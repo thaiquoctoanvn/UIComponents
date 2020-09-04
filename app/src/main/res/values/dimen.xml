@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="lv8dp">8dp</dimen>
+    <dimen name="lv16dp">16dp</dimen>
+    <dimen name="lv24dp">24dp</dimen>
+    <dimen name="lv32dp">32dp</dimen>
+    <dimen name="lv40dp">40dp</dimen>
+    <dimen name="lv48dp">48dp</dimen>
+    <dimen name="lv56dp">56dp</dimen>
+    <dimen name="lv64dp">64dp</dimen>
+    <dimen name="textSize16">16sp</dimen>
+    <dimen name="textSize20">20sp</dimen>
+    <dimen name="textSize24">24sp</dimen>
+</resources>

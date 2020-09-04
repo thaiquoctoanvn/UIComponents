@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/ic_sort_black_24dp"
+        android:id="@+id/menuTabLeft"
+        app:showAsAction="always"
+        android:title="Tab left"
+        android:orderInCategory="1"/>
+    <item
+        android:icon="@drawable/ic_sort_black_24dp"
+        android:id="@+id/menuTabMiddle"
+        app:showAsAction="always"
+        android:title="Tab middle"
+        android:orderInCategory="2"/>
+    <item
+        android:icon="@drawable/ic_sort_black_24dp"
+        android:id="@+id/menuTabRight"
+        app:showAsAction="always"
+        android:title="Tab right"
+        android:orderInCategory="3"/>
+</menu>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/ic_home_black_24dp"
+        android:id="@+id/homeFragment"
+        app:showAsAction="always"
+        android:title="Home"
+        android:orderInCategory="1"/>
+    <item
+        android:icon="@drawable/ic_notifications_black_24dp"
+        android:id="@+id/notificationFragment"
+        app:showAsAction="always"
+        android:title="Notification"
+        android:orderInCategory="2"/>
+    <item
+        android:icon="@drawable/ic_reorder_black_24dp"
+        android:id="@+id/moreFragment"
+        app:showAsAction="always"
+        android:title="More"
+        android:orderInCategory="3"/>
+</menu>
