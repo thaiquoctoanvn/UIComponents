@@ -3,12 +3,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment"
-    android:background="@color/colorWhiteOriginal">
+    android:background="@color/colorWhite">
 
-    <TextView
+    <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="aaaaaaaaaaaa"/>
+        android:id="@+id/vpHome"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorWhite"
+        android:layout_marginTop="@dimen/lv24dp">
+        <com.google.android.material.tabs.TabLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tabLayoutHome"
+            app:tabBackground="@color/colorWhite"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorHeight="0dp"
+            app:tabGravity="fill"
+            app:tabMode="scrollable"
+            android:background="@color/colorWhite"/>
+    </androidx.viewpager.widget.ViewPager>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

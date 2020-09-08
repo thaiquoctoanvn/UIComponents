@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageButton
         android:layout_width="wrap_content"
@@ -15,11 +15,13 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/ibDrawerLayout"
         app:layout_constraintTop_toTopOf="@id/ibDrawerLayout"
         app:layout_constraintBottom_toBottomOf="@id/ibDrawerLayout"
+        app:layout_constraintLeft_toRightOf="@id/ibDrawerLayout"
+        android:layout_marginLeft="@dimen/lv24dp"
         android:text="Title"
-        android:layout_marginLeft="@dimen/lv16dp"
-        android:textSize="@dimen/textSize24"
-        android:id="@+id/tvTitleFragment"/>
+        android:textSize="@dimen/textSize20"
+        android:id="@+id/tvTitleFragment"
+        android:textStyle="bold"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

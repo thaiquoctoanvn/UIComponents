@@ -8,5 +8,18 @@
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="16:9"
         android:src="@color/colorGrey"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/ivDrawerLayoutHeader"
+        android:scaleType="fitXY"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ivDrawerLayoutHeader"
+        app:layout_constraintTop_toTopOf="@id/ivDrawerLayoutHeader"
+        app:layout_constraintVertical_bias="0.75"
+        android:layout_marginLeft="@dimen/lv24dp"
+        android:text="Eden"
+        android:textSize="@dimen/lv32dp"
+        android:id="@+id/tvDrawerLayoutHeader"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
