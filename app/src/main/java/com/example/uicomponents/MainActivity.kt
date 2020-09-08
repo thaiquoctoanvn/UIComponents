@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
         setUpNavigation()
         setViewOnClickListener()
         setDataToDrawerLayoutHeader()
-
     }
 
     private fun setUpNavigation() {
@@ -50,7 +49,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
     private fun setViewOnClickListener() {
         ibDrawerLayout.setOnClickListener(this)
         drawerNavigation.setNavigationItemSelectedListener(this)
-
     }
 
     private fun setDataToDrawerLayoutHeader() {
@@ -109,10 +107,5 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
         arguments: Bundle?
     ) {
         tvTitleFragment.text = destination.label
-
     }
-
-
-
-
 }

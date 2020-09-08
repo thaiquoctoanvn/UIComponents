@@ -2,6 +2,7 @@ package com.example.uicomponents
 
 import android.content.Context
 import android.media.Image
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class RecyclerViewLeftFragmentAdapter(private val dataList: ArrayList<ExampleObject>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class RecyclerViewLeftFragmentAdapter(
+    private val dataList: ArrayList<ExampleObject>
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var context: Context
 
@@ -38,12 +41,11 @@ class RecyclerViewLeftFragmentAdapter(private val dataList: ArrayList<ExampleObj
         when(holder) {
             is ViewHolderWithCheckBox -> holder.bindDataForOddItem(context, item)
             is ViewHolderWithoutCheckBox -> holder.bindDataForEvenItem(context, item)
+            else -> Log.d("###", "No suitable type")
         }
     }
-
-
-
 }
+
 class ViewHolderWithCheckBox(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val ivViewHolder = itemView.findViewById<ImageView>(R.id.ivViewHolder)
@@ -57,7 +59,6 @@ class ViewHolderWithCheckBox(itemView: View) : RecyclerView.ViewHolder(itemView)
             .load(exampleObject.imageSource)
             .into(ivViewHolder)
     }
-
 }
 
 class ViewHolderWithoutCheckBox(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -20,6 +20,7 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment : Fragment(), ViewPager.OnPageChangeListener, DrawerItemClickListener {
     // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -69,16 +70,14 @@ class HomeFragment : Fragment(), ViewPager.OnPageChangeListener, DrawerItemClick
             addTab(RightFragment(), "Tab right")
         }
         vpHome.adapter = homeTabPagerAdapter
-        tabLayoutHome.setupWithViewPager(vpHome)
-
-        highlightCurrentTabHeader(currentPosition)
         vpHome.addOnPageChangeListener(this)
-
+        tabLayoutHome.setupWithViewPager(vpHome)
+        highlightCurrentTabHeader(currentPosition)
     }
 
     private fun highlightCurrentTabHeader(position: Int) {
         var i = 0
-        while(i < tabLayoutHome.tabCount) {
+        while (i < tabLayoutHome.tabCount) {
             val tab = tabLayoutHome.getTabAt(i)
             tab?.apply {
                 customView = null
@@ -92,8 +91,6 @@ class HomeFragment : Fragment(), ViewPager.OnPageChangeListener, DrawerItemClick
             customView = homeTabPagerAdapter.getCustomTabView(position, COLOR_SELECTED, BACKGROUND_SELECTED)
         }
     }
-
-
 
     companion object {
 

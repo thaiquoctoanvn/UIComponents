@@ -15,7 +15,6 @@ class HomeTabPagerAdapter(fm: FragmentManager, context: MainActivity) : Fragment
     private val tabTitleList = ArrayList<String>()
     private val context = context
 
-
     override fun getItem(position: Int): Fragment {
         return fragmentList[position]
     }
@@ -32,15 +31,11 @@ class HomeTabPagerAdapter(fm: FragmentManager, context: MainActivity) : Fragment
     fun getCustomTabView(position: Int, titleColor: Int, backgroundColor: Int): View {
         val view = LayoutInflater.from(context).inflate(R.layout.item_tab_header, null)
         val tvTabHeader = view.findViewById<TextView>(R.id.tvTabHeader)
-        val tvDecoration = view.findViewById<TextView>(R.id.tvDecoration)
         tvTabHeader.apply {
             text = tabTitleList[position]
             setTextColor(ContextCompat.getColor(context, titleColor))
             background = ContextCompat.getDrawable(context, backgroundColor)
         }
-        var length = tvTabHeader.width
-        tvDecoration.width = length
-        tvDecoration.text = "aaa"
         return view
     }
 }

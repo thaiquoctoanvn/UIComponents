@@ -40,20 +40,18 @@ class LeftFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        addExampleData()
         val view = inflater.inflate(R.layout.fragment_left, container, false)
         val rvLeftFragment = view.findViewById<RecyclerView>(R.id.rvLeftFragment)
-        addExampleData()
         val exampleAdapter = RecyclerViewLeftFragmentAdapter(exampleList)
         rvLeftFragment.apply {
             adapter = exampleAdapter
             layoutManager = LinearLayoutManager(activity)
         }
-
         return view
     }
 
     private fun addExampleData() {
-
         val img1 = "https://media.istockphoto.com/vectors/2019ncov-coronovirus-alert-dangerous-virus-epidemic-chinese-pneumonia-vector-id1265247958"
         val img2 = "https://media.istockphoto.com/vectors/the-new-normal-related-flat-style-banner-design-with-icons-vector-vector-id1257424769"
         val img3 = "https://media.istockphoto.com/vectors/uncertainty-in-business-due-covid19-pandemic-concept-vector-id1258944264"
@@ -69,11 +67,11 @@ class LeftFragment : Fragment() {
 
         exampleList.apply {
             add(ExampleObject(img1, textContent, false))
-            add(ExampleObject(img2, textContent, false))
+            add(ExampleObject(img2, textContent, true))
             add(ExampleObject(img3, textContent, false))
             add(ExampleObject(img4, textContent, false))
             add(ExampleObject(img5, textContent, false))
-            add(ExampleObject(img6, textContent, false))
+            add(ExampleObject(img6, textContent, true))
             add(ExampleObject(img7, textContent, false))
             add(ExampleObject(img8, textContent, false))
             add(ExampleObject(img9, textContent, false))
