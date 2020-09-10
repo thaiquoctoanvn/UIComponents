@@ -3,17 +3,18 @@ package com.example.uicomponents
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 
-class HomeTabPagerAdapter(fm: FragmentManager, context: MainActivity) : FragmentStatePagerAdapter(fm) {
+class HomeTabPagerAdapter(fm: FragmentManager, viewGroup: ViewGroup) : FragmentStatePagerAdapter(fm) {
 
     private val fragmentList = ArrayList<Fragment>()
     private val tabTitleList = ArrayList<String>()
-    private val context = context
+    private val context = viewGroup.context
 
     override fun getItem(position: Int): Fragment {
         return fragmentList[position]

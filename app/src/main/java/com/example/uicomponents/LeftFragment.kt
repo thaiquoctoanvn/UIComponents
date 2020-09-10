@@ -1,5 +1,6 @@
 package com.example.uicomponents
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,33 +8,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_left.*
+import kotlinx.coroutines.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class LeftFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
+    RecyclerViewItemClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LeftFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class LeftFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    private lateinit var exampleAdapter: RecyclerViewLeftFragmentAdapter
     private val exampleList = ArrayList<ExampleObject>()
+    private var isLoading = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -42,13 +32,84 @@ class LeftFragment : Fragment() {
     ): View? {
         addExampleData()
         val view = inflater.inflate(R.layout.fragment_left, container, false)
-        val rvLeftFragment = view.findViewById<RecyclerView>(R.id.rvLeftFragment)
-        val exampleAdapter = RecyclerViewLeftFragmentAdapter(exampleList)
+//        val rvLeftFragment = view.findViewById<RecyclerView>(R.id.rvLeftFragment)
+//        val exampleAdapter = RecyclerViewLeftFragmentAdapter(exampleList)
+//        rvLeftFragment.apply {
+//            adapter = exampleAdapter
+//            layoutManager = LinearLayoutManager(activity)
+//        }
+        return view
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setUpAdapterToRecyclerView()
+        setViewOnClickListener()
+    }
+
+    private fun setUpAdapterToRecyclerView() {
+       exampleAdapter = RecyclerViewLeftFragmentAdapter(exampleList, this)
         rvLeftFragment.apply {
             adapter = exampleAdapter
             layoutManager = LinearLayoutManager(activity)
         }
-        return view
+    }
+
+    private fun setViewOnClickListener() {
+        swipeContainer.setOnRefreshListener(this)
+        rvLeftFragment.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if(!isLoading && !recyclerView.canScrollVertically(1)) {
+                    Log.d("###", "Loading")
+                    isLoading = true
+                    loadMore()
+                } else if(!recyclerView.canScrollVertically(-1)) {
+                    exampleList.clear()
+                    exampleAdapter.notifyDataSetChanged()
+                    addExampleData()
+                    exampleAdapter.notifyDataSetChanged()
+                }
+
+            }
+
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+            }
+        })
+    }
+
+    private fun loadMore() {
+        exampleList.add(ExampleObject("", "null", false))
+        exampleAdapter.notifyItemInserted(exampleList.size - 1)
+        GlobalScope.launch(Dispatchers.Main) {
+            delay(2000)
+            exampleList.removeAt(exampleList.size - 1)
+            exampleAdapter.notifyItemRemoved(exampleList.size - 1)
+            exampleList.add(ExampleObject(
+                "https://thatgrapejuice.net/wp-content/uploads/2020/01/justin-bieber-changes-album-tgj.jpg",
+                "load more 1",
+                false)
+            )
+            exampleList.add(ExampleObject(
+                "https://thatgrapejuice.net/wp-content/uploads/2020/01/justin-bieber-changes-album-tgj.jpg",
+                "load more 2",
+                false)
+            )
+            exampleAdapter.notifyDataSetChanged()
+            isLoading = false
+        }
+    }
+
+    private fun pullToRefresh() {
+        exampleList.clear()
+        exampleAdapter.notifyDataSetChanged()
+        GlobalScope.launch(Dispatchers.Main) {
+            delay(2000)
+            addExampleData()
+            exampleAdapter.notifyDataSetChanged()
+        }
+        swipeContainer.isRefreshing = false
     }
 
     private fun addExampleData() {
@@ -79,23 +140,20 @@ class LeftFragment : Fragment() {
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LeftFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LeftFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    companion object {}
+
+    override fun onRefresh() {
+        swipeContainer.setColorSchemeResources(
+            R.color.colorPrimary,
+            R.color.colorPrimaryDark,
+            R.color.colorAccent,
+            R.color.colorSubAccent
+        )
+        pullToRefresh()
+    }
+
+    override fun setOnItemClickListener(itemView: View, position: Int) {
+        val intent = Intent(activity, DetailActivity::class.java)
+        startActivity(intent)
     }
 }

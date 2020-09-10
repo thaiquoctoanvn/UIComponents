@@ -6,6 +6,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:enterFadeDuration">5000</item>
+        <item name="android:exitFadeDuration">5000</item>
+        <item name="android:windowEnterTransition">@android:transition/slide_bottom</item>
+        <item name="android:windowExitTransition">@android:transition/slide_top</item>
+        <item name="android:fadeDuration">5000</item>
     </style>
 
 </resources>
