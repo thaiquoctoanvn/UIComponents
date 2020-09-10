@@ -31,14 +31,7 @@ class LeftFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
         savedInstanceState: Bundle?
     ): View? {
         addExampleData()
-        val view = inflater.inflate(R.layout.fragment_left, container, false)
-//        val rvLeftFragment = view.findViewById<RecyclerView>(R.id.rvLeftFragment)
-//        val exampleAdapter = RecyclerViewLeftFragmentAdapter(exampleList)
-//        rvLeftFragment.apply {
-//            adapter = exampleAdapter
-//            layoutManager = LinearLayoutManager(activity)
-//        }
-        return view
+        return inflater.inflate(R.layout.fragment_left, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -61,7 +54,7 @@ class LeftFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if(!isLoading && !recyclerView.canScrollVertically(1)) {
-                    Log.d("###", "Loading")
+                    Log.d("###", "Loading more")
                     isLoading = true
                     loadMore()
                 } else if(!recyclerView.canScrollVertically(-1)) {
@@ -83,6 +76,7 @@ class LeftFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
         exampleList.add(ExampleObject("", "null", false))
         exampleAdapter.notifyItemInserted(exampleList.size - 1)
         GlobalScope.launch(Dispatchers.Main) {
+            Log.d("###", "Refreshing data")
             delay(2000)
             exampleList.removeAt(exampleList.size - 1)
             exampleAdapter.notifyItemRemoved(exampleList.size - 1)
