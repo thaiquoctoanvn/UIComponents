@@ -1,19 +1,17 @@
 package com.example.uicomponents
 
 import android.content.Context
-import android.media.Image
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.item_loading.view.*
+import com.example.uicomponents.listener.RecyclerViewItemClickListener
 
 class RecyclerViewLeftFragmentAdapter(
     private val dataList: ArrayList<ExampleObject>,
@@ -52,10 +50,6 @@ class RecyclerViewLeftFragmentAdapter(
             listener.setOnItemClickListener(it, position)
         }
     }
-
-    fun setOnExampleItemClickListener(listener: RecyclerViewItemClickListener) {
-        this.listener = listener
-    }
 }
 
 class ViewHolderWithCheckBox(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -90,8 +84,5 @@ class ViewHolderLoading(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun showLoading() {
         pbLoading.show()
-    }
-
-    fun dismissLoading() {
     }
 }

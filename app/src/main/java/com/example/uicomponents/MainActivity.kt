@@ -1,29 +1,21 @@
 package com.example.uicomponents
 
-import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
+import com.example.uicomponents.listener.DrawerItemClickListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.item_drawer_header.*
 import kotlinx.android.synthetic.main.item_toolbar.*
-import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener,
     NavigationView.OnNavigationItemSelectedListener, NavController.OnDestinationChangedListener,
@@ -34,7 +26,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        launchActivity()
+
         supportActionBar?.hide()
         setUpBottomNavigationBar()
         setViewOnClickListener()
@@ -84,15 +76,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
         listener.setOnDrawerItemClickListener(position)
     }
 
-    private fun launchActivity() {
-        lifecycleScope.launch(Dispatchers.Main) {
-            delay(1000)
-            pbLaunching.show()
-            delay(2000)
-            Log.d("###", "Launching")
-            pbLaunching.hide()
-        }
-    }
+
 
     fun setUpDrawerItemClickListener(drawerItemClickListener: DrawerItemClickListener) {
         this.listener = drawerItemClickListener

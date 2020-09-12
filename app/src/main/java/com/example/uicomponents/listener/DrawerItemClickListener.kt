@@ -1,4 +1,4 @@
-package com.example.uicomponents
+package com.example.uicomponents.listener
 
 import androidx.viewpager.widget.ViewPager
 

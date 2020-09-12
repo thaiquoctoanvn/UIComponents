@@ -49,15 +49,6 @@
             android:background="@drawable/background_default"
             android:layout_marginLeft="@dimen/lv16dp"
             android:layout_marginRight="@dimen/lv16dp"/>
-        <androidx.core.widget.ContentLoadingProgressBar
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/pbLaunching"
-            style="?android:attr/progressBarStyle"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"

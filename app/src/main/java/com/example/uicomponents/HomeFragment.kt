@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
+import com.example.uicomponents.listener.DrawerItemClickListener
 import com.google.android.material.tabs.TabLayout
 
-class HomeFragment : Fragment(), ViewPager.OnPageChangeListener, DrawerItemClickListener {
+class HomeFragment : Fragment(), ViewPager.OnPageChangeListener,
+    DrawerItemClickListener {
 
     private val BACKGROUND_DEFAULT = R.drawable.background_default
     private val BACKGROUND_SELECTED = R.drawable.background_selected

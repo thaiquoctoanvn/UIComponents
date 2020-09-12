@@ -7,11 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.uicomponents.listener.RecyclerViewItemClickListener
 import kotlinx.android.synthetic.main.fragment_left.*
 import kotlinx.coroutines.*
 
