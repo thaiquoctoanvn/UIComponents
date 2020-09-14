@@ -1,11 +1,14 @@
 package com.example.uicomponents
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -15,7 +18,12 @@ import com.example.uicomponents.listener.DrawerItemClickListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.pbLaunching
 import kotlinx.android.synthetic.main.item_toolbar.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity(), View.OnClickListener,
     NavigationView.OnNavigationItemSelectedListener, NavController.OnDestinationChangedListener,
@@ -26,8 +34,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         supportActionBar?.hide()
+        launchMainActivity()
         setUpBottomNavigationBar()
         setViewOnClickListener()
         setDataToDrawerLayoutHeader()
@@ -76,7 +84,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
         listener.setOnDrawerItemClickListener(position)
     }
 
-
+    private fun launchMainActivity() {
+        pbLaunching.show()
+        bottomNavigationView.visibility = View.GONE
+        lifecycleScope.launch(Dispatchers.IO) {
+            delay(2000)
+            Log.d("###", "Launching")
+            withContext(Dispatchers.Main) {
+                pbLaunching.hide()
+                layoutLaunching.visibility = View.GONE
+                bottomNavigationView.visibility = View.VISIBLE
+            }
+        }
+    }
 
     fun setUpDrawerItemClickListener(drawerItemClickListener: DrawerItemClickListener) {
         this.listener = drawerItemClickListener

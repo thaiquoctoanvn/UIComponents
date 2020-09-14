@@ -1,4 +1,4 @@
-package com.example.uicomponents
+package com.example.uicomponents.adapter
 
 import android.content.Context
 import android.util.Log
@@ -11,6 +11,8 @@ import android.widget.TextView
 import androidx.core.widget.ContentLoadingProgressBar
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.uicomponents.ExampleObject
+import com.example.uicomponents.R
 import com.example.uicomponents.listener.RecyclerViewItemClickListener
 
 class RecyclerViewLeftFragmentAdapter(
@@ -28,9 +30,21 @@ class RecyclerViewLeftFragmentAdapter(
         context = parent.context
         val inflater = LayoutInflater.from(context)
         return if(viewType == 0) {
-            ViewHolderLoading(inflater.inflate(R.layout.item_loading, parent, false))
+            ViewHolderLoading(
+                inflater.inflate(
+                    R.layout.item_loading,
+                    parent,
+                    false
+                )
+            )
         } else {
-            ViewHolderWithCheckBox(inflater.inflate(R.layout.item_viewholder, parent, false))
+            ViewHolderWithCheckBox(
+                inflater.inflate(
+                    R.layout.item_viewholder,
+                    parent,
+                    false
+                )
+            )
         }
     }
 

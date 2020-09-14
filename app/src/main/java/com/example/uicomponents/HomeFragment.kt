@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
+import com.example.uicomponents.adapter.HomeTabPagerAdapter
 import com.example.uicomponents.listener.DrawerItemClickListener
 import com.google.android.material.tabs.TabLayout
 
@@ -47,7 +48,11 @@ class HomeFragment : Fragment(), ViewPager.OnPageChangeListener,
     }
 
     private fun setUpTabToViewPager() {
-        homeTabPagerAdapter = HomeTabPagerAdapter(childFragmentManager, tabLayoutHome)
+        homeTabPagerAdapter =
+            HomeTabPagerAdapter(
+                childFragmentManager,
+                tabLayoutHome
+            )
         homeTabPagerAdapter.apply {
             addTab(LeftFragment(), "Tab left")
             addTab(MiddleFragment(), "Tab middle")

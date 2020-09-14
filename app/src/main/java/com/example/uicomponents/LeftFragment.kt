@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.example.uicomponents.adapter.RecyclerViewLeftFragmentAdapter
 import com.example.uicomponents.listener.RecyclerViewItemClickListener
 import kotlinx.android.synthetic.main.fragment_left.*
 import kotlinx.coroutines.*
@@ -40,7 +41,11 @@ class LeftFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener,
     }
 
     private fun setUpAdapterToRecyclerView() {
-       exampleAdapter = RecyclerViewLeftFragmentAdapter(exampleList, this)
+       exampleAdapter =
+           RecyclerViewLeftFragmentAdapter(
+               exampleList,
+               this
+           )
         rvLeftFragment.apply {
             adapter = exampleAdapter
             layoutManager = LinearLayoutManager(activity)

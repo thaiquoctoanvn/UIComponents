@@ -1,6 +1,5 @@
-package com.example.uicomponents
+package com.example.uicomponents.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.example.uicomponents.R
 
 class HomeTabPagerAdapter(fm: FragmentManager, viewGroup: ViewGroup) : FragmentStatePagerAdapter(fm) {
 
