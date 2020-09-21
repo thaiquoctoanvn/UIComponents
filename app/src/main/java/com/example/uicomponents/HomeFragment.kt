@@ -57,6 +57,8 @@ class HomeFragment : Fragment(), ViewPager.OnPageChangeListener,
             addTab(LeftFragment(), "Tab left")
             addTab(MiddleFragment(), "Tab middle")
             addTab(RightFragment(), "Tab right")
+            addTab(ColorFragment(), "Tab color")
+            addTab(SlowMotionAddingFragment(), "Tab slow motion")
         }
         vpHome.adapter = homeTabPagerAdapter
         vpHome.addOnPageChangeListener(this)

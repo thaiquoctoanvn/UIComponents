@@ -18,7 +18,7 @@ import com.example.uicomponents.listener.DrawerItemClickListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_main.pbLaunching
+import kotlinx.android.synthetic.main.item_progressbar.*
 import kotlinx.android.synthetic.main.item_toolbar.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

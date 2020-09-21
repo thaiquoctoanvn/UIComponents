@@ -14,6 +14,9 @@ import com.bumptech.glide.Glide
 import com.example.uicomponents.ExampleObject
 import com.example.uicomponents.R
 import com.example.uicomponents.listener.RecyclerViewItemClickListener
+import kotlinx.android.synthetic.main.item_viewholder.view.*
+import kotlinx.android.synthetic.main.item_viewholder_loading.view.*
+import kotlinx.android.synthetic.main.item_viewholder_without_checkbox.view.*
 
 class RecyclerViewLeftFragmentAdapter(
     private val dataList: ArrayList<ExampleObject>,
@@ -22,17 +25,21 @@ class RecyclerViewLeftFragmentAdapter(
 
     private lateinit var context: Context
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        context = recyclerView.context
+    }
+
     override fun getItemViewType(position: Int): Int {
         return if(dataList[position].textContent == "null") 0 else 1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        context = parent.context
         val inflater = LayoutInflater.from(context)
         return if(viewType == 0) {
             ViewHolderLoading(
                 inflater.inflate(
-                    R.layout.item_loading,
+                    R.layout.item_viewholder_loading,
                     parent,
                     false
                 )
@@ -67,36 +74,26 @@ class RecyclerViewLeftFragmentAdapter(
 }
 
 class ViewHolderWithCheckBox(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    private val ivViewHolder = itemView.findViewById<ImageView>(R.id.ivViewHolder)
-    private val tvViewHolder = itemView.findViewById<TextView>(R.id.tvViewHolder)
-    private val cbViewHolder = itemView.findViewById<CheckBox>(R.id.cbViewHolder)
-
     fun bindDataForOddItem(context: Context, exampleObject: ExampleObject) {
-        cbViewHolder.isChecked = exampleObject.isSelected
-        tvViewHolder.text = exampleObject.textContent
+        itemView.cbViewHolder.isChecked = exampleObject.isSelected
+        itemView.tvViewHolder.text = exampleObject.textContent
         Glide.with(context)
             .load(exampleObject.imageSource)
-            .into(ivViewHolder)
+            .into(itemView.ivViewHolder)
     }
 }
 
 class ViewHolderWithoutCheckBox(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-    private val ivViewHolderWithoutCheckBox = itemView.findViewById<ImageView>(R.id.ivViewHolderWithoutCheckBox)
-    private val tvViewHolderWithoutCheckBox = itemView.findViewById<TextView>(R.id.tvViewHolderWithoutCheckBox)
     fun bindDataForEvenItem(context: Context, exampleObject: ExampleObject) {
-        tvViewHolderWithoutCheckBox.text = exampleObject.textContent
+        itemView.tvViewHolderWithoutCheckBox.text = exampleObject.textContent
         Glide.with(context)
             .load(exampleObject.imageSource)
-            .into(ivViewHolderWithoutCheckBox)
+            .into(itemView.ivViewHolderWithoutCheckBox)
     }
 }
 
 class ViewHolderLoading(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val pbLoading = itemView.findViewById<ContentLoadingProgressBar>(R.id.pbLoading)
-
     fun showLoading() {
-        pbLoading.show()
+        itemView.pbViewHolderLoading.show()
     }
 }

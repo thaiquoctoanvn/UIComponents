@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ColorFragment">
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/btnCreateData"
+        app:layout_constraintRight_toRightOf="@id/btnStartTime"
+        android:hint="Type a number of data"
+        android:id="@+id/etNumberOfDataColorFragment"
+        android:layout_marginTop="@dimen/lv16dp"/>
+    <Button
+        android:id="@+id/btnCreateData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorAccent"
+        android:text="Create data"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etNumberOfDataColorFragment"
+        app:layout_constraintRight_toRightOf="@id/guidelineVertical"
+        android:layout_marginTop="@dimen/lv16dp"
+        android:layout_marginLeft="@dimen/lv16dp"
+        android:layout_marginRight="@dimen/lv16dp"/>
+    <Button
+        android:id="@+id/btnStartTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Start timer"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/btnCreateData"
+        app:layout_constraintBottom_toBottomOf="@id/btnCreateData"
+        app:layout_constraintLeft_toLeftOf="@id/guidelineVertical"
+        android:layout_marginRight="@dimen/lv16dp"
+        android:layout_marginLeft="@dimen/lv16dp"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp"
+        app:layout_constraintGuide_percent="0.5"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btnCreateData"
+        android:layout_marginTop="@dimen/lv16dp"
+        android:padding="@dimen/lv16dp"
+        android:id="@+id/rvTextColor">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
