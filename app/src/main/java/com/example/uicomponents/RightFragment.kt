@@ -9,13 +9,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.uicomponents.adapter.RecyclerViewRightFragmentAdapter
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_right.*
 import kotlinx.coroutines.*
 
 class RightFragment : Fragment() {
 
     private var rightFragmentAdapter: RecyclerViewRightFragmentAdapter? = null
-    private var dataList = ArrayList<String>()
+    private var dataList = ArrayList<ExampleObject>()
     private var isDisplaying = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,44 +33,40 @@ class RightFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setUpAdapterToRecyclerView()
-        dataList = ReusedFunctions.addExampleStringData(10)
         btnShowData.setOnClickListener {
-            showDataOnRecyclerView()
+            addData()
         }
     }
 
     private fun setUpAdapterToRecyclerView() {
-        rightFragmentAdapter = RecyclerViewRightFragmentAdapter()
+        rightFragmentAdapter = RecyclerViewRightFragmentAdapter(onItemClickListener)
         rvRightFragment.apply {
             adapter = rightFragmentAdapter
             layoutManager = LinearLayoutManager(activity)
         }
     }
 
-    private fun showDataOnRecyclerView() {
-        if(!isDisplaying) {
-            if(dataList.size != 0) {
-                dataList.clear()
-            }
-            rightFragmentAdapter?.clearList()
-            dataList = ReusedFunctions.addExampleStringData(10)
-            isDisplaying = true
-            CoroutineScope(Dispatchers.IO).launch {
-                dataList.forEachIndexed { index, item ->
-                    withContext(Dispatchers.Main) {
-                        rightFragmentAdapter?.addList(index, item)
-                    }
-                    delay(1000)
-                    if(dataList.size == rightFragmentAdapter?.itemCount) {
-                        withContext(Dispatchers.Main) {
-                            activity?.let {
-                                Toast.makeText(activity, "Show data completely", Toast.LENGTH_SHORT).show()
-                            }
-                            isDisplaying = false
-                        }
-                    }
+    private fun addData() {
+        val tempList = listOf(ExampleObject("xxx", "azz", true), ExampleObject("yyy", "bzz", true))
+        println("temp list $tempList")
+        Log.d("temListSize", tempList.size.toString())
+        CoroutineScope(Dispatchers.IO).launch {
+            tempList.forEach {
+                dataList.add(it)
+                withContext(Dispatchers.Main) {
+                    rightFragmentAdapter?.swapData(dataList)
                 }
+                delay(1000)
             }
+        }
+    }
+    
+    private val onItemClickListener: (itemView: View, position: Int) -> Unit = {itemView, position ->  
+        val newDataList = ArrayList(rightFragmentAdapter?.currentList)
+        newDataList.removeAt(position)
+        newDataList.add(position, ExampleObject(dataList[position].imageSource, "change", true))
+        CoroutineScope(Dispatchers.Main).launch {
+            rightFragmentAdapter?.swapData(newDataList)
         }
     }
 

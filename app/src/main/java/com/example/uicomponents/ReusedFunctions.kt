@@ -14,9 +14,7 @@ class ReusedFunctions {
     companion object {
         fun addExampleStringData(range: Int): ArrayList<String> {
             val dataList = ArrayList<String>()
-            CoroutineScope(Dispatchers.IO).launch {
-                dataList.addAll(List(range) { Random.nextInt(0, 100).toString() })
-            }
+            dataList.addAll(List(range) { Random.nextInt(0, 100).toString() })
             return dataList
         }
     }
