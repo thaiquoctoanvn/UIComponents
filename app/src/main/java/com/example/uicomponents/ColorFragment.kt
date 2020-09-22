@@ -18,15 +18,8 @@ import kotlin.system.measureTimeMillis
 
 class ColorFragment : Fragment(), View.OnClickListener {
 
-    private var dataList = ArrayList<String>()
-    private var evenPositionList = ArrayList<Int>()
-    private var oddPositionList = ArrayList<Int>()
     private var isTimerRunning = false
     private lateinit var colorAdapter: RecyclerViewColorFragmentAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +32,7 @@ class ColorFragment : Fragment(), View.OnClickListener {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         btnStartTime.isEnabled = false
+        setAdapterToRecyclerView()
         setViewOnClickListener()
     }
 
@@ -47,8 +41,8 @@ class ColorFragment : Fragment(), View.OnClickListener {
         btnStartTime.setOnClickListener(this)
     }
 
-    private fun setAdapterToRecyclerView(dataList: ArrayList<String>) {
-        colorAdapter = RecyclerViewColorFragmentAdapter(dataList, onItemClickListener)
+    private fun setAdapterToRecyclerView() {
+        colorAdapter = RecyclerViewColorFragmentAdapter(onItemClickListener)
         rvTextColor.apply {
             adapter = colorAdapter
             layoutManager = LinearLayoutManager(activity)
@@ -61,8 +55,11 @@ class ColorFragment : Fragment(), View.OnClickListener {
             if(range == "") {
                 Toast.makeText(activity, "Fill a number before creating data", Toast.LENGTH_SHORT).show()
             } else {
-                dataList = ReusedFunctions.addExampleStringData(range.toInt())
-                setAdapterToRecyclerView(dataList)
+                val dataList = ReusedFunctions.addExampleStringData(range.toInt())
+                Log.d("colorListSize", dataList.size.toString())
+                colorAdapter.swapList(dataList)
+                println("currentList ${colorAdapter.currentList}")
+                println("currentListSize ${colorAdapter.currentList.size}")
                 btnStartTime.isEnabled = true
             }
         }
@@ -91,11 +88,10 @@ class ColorFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private val onItemClickListener: (view: View, position: Int) -> Unit = { view, position ->
-        CoroutineScope(Dispatchers.Main).launch {
-            activity?.let {
-                Snackbar.make(it.findViewById(android.R.id.content), dataList[position], Snackbar.LENGTH_SHORT).show()
-            }
+    private val onItemClickListener: (total: Int) -> Unit = { total ->
+        activity?.let {
+            //Message trong snackbar phải là string, nếu không sẽ gây crash
+            Snackbar.make(it.findViewById(android.R.id.content), total.toString(), Snackbar.LENGTH_SHORT).show()
         }
     }
 

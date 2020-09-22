@@ -18,7 +18,7 @@ import kotlinx.coroutines.*
 
 class SlowMotionAddingFragment : Fragment(), View.OnClickListener {
 
-    private var numberList = ArrayList<String>()
+    private var numberList = ArrayList<ExampleObject>()
     private var isRunning = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +85,7 @@ class SlowMotionAddingFragment : Fragment(), View.OnClickListener {
                         loading.show()
                     }
                     delay(2000)
-                    sum += number.toInt()
+                    sum += number.textContent.toInt()
                     withContext(Dispatchers.Main) {
                         loading.dismiss()
                     }

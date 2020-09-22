@@ -47,9 +47,8 @@ class RightFragment : Fragment() {
     }
 
     private fun addData() {
-        val tempList = listOf(ExampleObject("xxx", "azz", true), ExampleObject("yyy", "bzz", true))
+        val tempList = createExampleObjectList()
         println("temp list $tempList")
-        Log.d("temListSize", tempList.size.toString())
         CoroutineScope(Dispatchers.IO).launch {
             tempList.forEach {
                 dataList.add(it)
@@ -59,6 +58,15 @@ class RightFragment : Fragment() {
                 delay(1000)
             }
         }
+    }
+
+    private fun createExampleObjectList(): ArrayList<ExampleObject> {
+        val textContent = "Greeting"
+        val listObject = ArrayList<ExampleObject>()
+        for(index in 0 until 13) {
+            listObject.add(ExampleObject(index.toString(), textContent, true))
+        }
+        return listObject
     }
     
     private val onItemClickListener: (itemView: View, position: Int) -> Unit = {itemView, position ->  

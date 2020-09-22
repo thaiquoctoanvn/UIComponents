@@ -5,12 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.uicomponents.ExampleObject
 import com.example.uicomponents.R
 import kotlinx.android.synthetic.main.item_slowmotion_adding.view.*
 import org.w3c.dom.Text
 
 class RecyclerViewSlowMotionAddingAdapter(
-    private val numberList: ArrayList<String>
+    private val numberList: ArrayList<ExampleObject>
 ) : RecyclerView.Adapter<ViewHolderSlowMotionAdding>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderSlowMotionAdding {
@@ -31,7 +32,7 @@ class RecyclerViewSlowMotionAddingAdapter(
 class ViewHolderSlowMotionAdding(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val tvViewHolderSlowMotionAdding = itemView.findViewById<TextView>(R.id.tvViewHolderSlowMotionAdding)
 
-    fun bindData(numberItem: String) {
-        tvViewHolderSlowMotionAdding.text = numberItem
+    fun bindData(numberItem: ExampleObject) {
+        tvViewHolderSlowMotionAdding.text = numberItem.textContent
     }
 }
