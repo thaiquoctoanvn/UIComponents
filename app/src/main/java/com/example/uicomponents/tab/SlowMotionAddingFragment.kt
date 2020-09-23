@@ -1,10 +1,9 @@
-package com.example.uicomponents
+package com.example.uicomponents.tab
 
 import android.app.Dialog
 import android.content.Context
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,10 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.uicomponents.R
+import com.example.uicomponents.ReusedFunctions
 import com.example.uicomponents.adapter.RecyclerViewSlowMotionAddingAdapter
+import com.example.uicomponents.model.ExampleObject
 import kotlinx.android.synthetic.main.fragment_slow_motion_adding.*
 import kotlinx.coroutines.*
 
@@ -58,7 +60,10 @@ class SlowMotionAddingFragment : Fragment(), View.OnClickListener {
             if("" == range) {
                 Toast.makeText(activity, "Fill a number of data before creating", Toast.LENGTH_SHORT).show()
             } else {
-                numberList = ReusedFunctions.addExampleStringData(range.toInt())
+                numberList =
+                    ReusedFunctions.addExampleStringData(
+                        range.toInt()
+                    )
                 setAdapterToView()
                 btnTotal.isEnabled = true
             }

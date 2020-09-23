@@ -1,9 +1,7 @@
 package com.example.uicomponents.adapter
 
-import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.DiffUtil
-import com.example.uicomponents.ExampleObject
+import com.example.uicomponents.model.ExampleObject
 
 class RightFragmentDiffCallBack : DiffUtil.ItemCallback<ExampleObject>() {
     override fun areItemsTheSame(oldItem: ExampleObject, newItem: ExampleObject): Boolean {

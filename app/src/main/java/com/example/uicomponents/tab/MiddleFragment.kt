@@ -1,7 +1,6 @@
-package com.example.uicomponents
+package com.example.uicomponents.tab
 
 import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.text.InputFilter
 import android.text.Spanned
@@ -12,8 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.Filter
-import android.widget.Toast
+import com.example.uicomponents.R
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_middle.*
 import kotlinx.coroutines.*

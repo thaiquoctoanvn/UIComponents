@@ -1,15 +1,15 @@
-package com.example.uicomponents
+package com.example.uicomponents.tab
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.uicomponents.R
+import com.example.uicomponents.ReusedFunctions
 import com.example.uicomponents.adapter.RecyclerViewRightFragmentAdapter
-import com.google.android.material.snackbar.Snackbar
+import com.example.uicomponents.model.ExampleObject
 import kotlinx.android.synthetic.main.fragment_right.*
 import kotlinx.coroutines.*
 
@@ -47,34 +47,26 @@ class RightFragment : Fragment() {
     }
 
     private fun addData() {
-        val tempList = createExampleObjectList()
+        val tempList =
+            ReusedFunctions.addExampleStringData(
+                10
+            )
         println("temp list $tempList")
         CoroutineScope(Dispatchers.IO).launch {
             tempList.forEach {
                 dataList.add(it)
                 withContext(Dispatchers.Main) {
-                    rightFragmentAdapter?.swapData(dataList)
+                    rightFragmentAdapter?.submitList(dataList.toMutableList())
                 }
                 delay(1000)
             }
         }
     }
-
-    private fun createExampleObjectList(): ArrayList<ExampleObject> {
-        val textContent = "Greeting"
-        val listObject = ArrayList<ExampleObject>()
-        for(index in 0 until 13) {
-            listObject.add(ExampleObject(index.toString(), textContent, true))
-        }
-        return listObject
-    }
     
-    private val onItemClickListener: (itemView: View, position: Int) -> Unit = {itemView, position ->  
-        val newDataList = ArrayList(rightFragmentAdapter?.currentList)
-        newDataList.removeAt(position)
-        newDataList.add(position, ExampleObject(dataList[position].imageSource, "change", true))
+    private val onItemClickListener: (position: Int) -> Unit = { position ->
+        dataList[position].textContent = "change"
         CoroutineScope(Dispatchers.Main).launch {
-            rightFragmentAdapter?.swapData(newDataList)
+            rightFragmentAdapter?.notifyItemChanged(position)
         }
     }
 

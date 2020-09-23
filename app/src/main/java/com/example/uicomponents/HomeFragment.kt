@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
 import com.example.uicomponents.adapter.HomeTabPagerAdapter
 import com.example.uicomponents.listener.DrawerItemClickListener
+import com.example.uicomponents.tab.*
 import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : Fragment(), ViewPager.OnPageChangeListener,

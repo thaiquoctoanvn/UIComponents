@@ -1,25 +1,26 @@
-package com.example.uicomponents
+package com.example.uicomponents.tab
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.uicomponents.R
+import com.example.uicomponents.ReusedFunctions
 import com.example.uicomponents.adapter.RecyclerViewColorFragmentAdapter
-import com.example.uicomponents.listener.RecyclerViewItemClickListener
+import com.example.uicomponents.model.ExampleObject
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_color.*
-import kotlinx.android.synthetic.main.item_viewholder_text_color.view.*
 import kotlinx.coroutines.*
-import kotlin.system.measureTimeMillis
 
 class ColorFragment : Fragment(), View.OnClickListener {
 
     private var isTimerRunning = false
     private lateinit var colorAdapter: RecyclerViewColorFragmentAdapter
+    private var sum = 0
+    private var dataList = ArrayList<ExampleObject>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,11 +56,11 @@ class ColorFragment : Fragment(), View.OnClickListener {
             if(range == "") {
                 Toast.makeText(activity, "Fill a number before creating data", Toast.LENGTH_SHORT).show()
             } else {
-                val dataList = ReusedFunctions.addExampleStringData(range.toInt())
-                Log.d("colorListSize", dataList.size.toString())
-                colorAdapter.swapList(dataList)
-                println("currentList ${colorAdapter.currentList}")
-                println("currentListSize ${colorAdapter.currentList.size}")
+                dataList =
+                    ReusedFunctions.addExampleStringData(
+                        range.toInt()
+                    )
+                colorAdapter.submitList(dataList.toMutableList())
                 btnStartTime.isEnabled = true
             }
         }
@@ -88,10 +89,11 @@ class ColorFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private val onItemClickListener: (total: Int) -> Unit = { total ->
+    private val onItemClickListener: (position: Int) -> Unit = { position ->
         activity?.let {
             //Message trong snackbar phải là string, nếu không sẽ gây crash
-            Snackbar.make(it.findViewById(android.R.id.content), total.toString(), Snackbar.LENGTH_SHORT).show()
+            sum += dataList[position].textContent.toInt()
+            Snackbar.make(it.findViewById(android.R.id.content), sum.toString(), Snackbar.LENGTH_SHORT).show()
         }
     }
 

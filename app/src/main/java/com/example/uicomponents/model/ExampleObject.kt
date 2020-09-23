@@ -1,4 +1,4 @@
-package com.example.uicomponents
+package com.example.uicomponents.model
 
 class ExampleObject(imageSource: String, textContent: String, isSelected: Boolean) {
 

@@ -3,13 +3,10 @@ package com.example.uicomponents.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.uicomponents.ExampleObject
+import com.example.uicomponents.model.ExampleObject
 import com.example.uicomponents.R
-import com.example.uicomponents.listener.RecyclerViewItemClickListener
-import com.google.android.material.checkbox.MaterialCheckBox
 import kotlinx.android.synthetic.main.item_viewholder_text_color.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -17,11 +14,10 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class RecyclerViewColorFragmentAdapter(
-    private val onItemClick: (total: Int) -> Unit
+    private val onItemClick: (position: Int) -> Unit
 ) : ListAdapter<ExampleObject, ViewHolderTextColor>(ColorFragmentDiffCallBack()) {
 
     private lateinit var rv: RecyclerView
-    private var sum = 0
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -36,10 +32,7 @@ class RecyclerViewColorFragmentAdapter(
     override fun onBindViewHolder(holder: ViewHolderTextColor, position: Int) {
         val textItem = getItem(position)
         holder.bindData(textItem)
-        holder.itemView.setOnClickListener {
-            sum += textItem.textContent.toInt()
-            onItemClick(sum)
-        }
+        holder.itemView.setOnClickListener { onItemClick(position) }
     }
 
     fun displayCheckByTime(second: Int) {
@@ -71,10 +64,6 @@ class RecyclerViewColorFragmentAdapter(
                 item.isSelected = checkState
             }
         }
-    }
-
-    fun swapList(list: ArrayList<ExampleObject>) {
-        submitList(list.toMutableList())
     }
 }
 

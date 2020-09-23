@@ -5,10 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.uicomponents.ExampleObject
+import com.example.uicomponents.model.ExampleObject
 import com.example.uicomponents.R
-import kotlinx.android.synthetic.main.item_slowmotion_adding.view.*
-import org.w3c.dom.Text
 
 class RecyclerViewSlowMotionAddingAdapter(
     private val numberList: ArrayList<ExampleObject>
