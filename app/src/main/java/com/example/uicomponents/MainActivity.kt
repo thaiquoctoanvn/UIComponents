@@ -46,8 +46,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
         NavigationUI.setupWithNavController(bottomNavigationView, navigationController)
         navigationController.addOnDestinationChangedListener(this)
         bottomNavigationView.setOnNavigationItemSelectedListener(this)
-        addBadge(R.id.notificationFragment)
-        addBadge(R.id.homeFragment)
+        addBadge(R.id.moreFragment)
     }
 
     private fun setViewOnClickListener() {
@@ -70,7 +69,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
     }
 
     private fun clearBadgeNumber(id: Int) {
-        if(id == R.id.homeFragment || id == R.id.notificationFragment || id == R.id.moreFragment) {
+        if(id == R.id.homeFragment || id == R.id.imageCollectionFragment || id == R.id.moreFragment) {
             val badgeDrawable = bottomNavigationView.getBadge(id)
             if(badgeDrawable != null) {
                 badgeDrawable.isVisible = false
@@ -112,7 +111,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener,
             R.id.menuTabMiddle -> switchTab(1)
             R.id.menuTabRight -> switchTab(2)
             R.id.homeFragment -> this.findNavController(R.id.fragment).navigate(R.id.homeFragment)
-            R.id.notificationFragment -> this.findNavController(R.id.fragment).navigate(R.id.notificationFragment)
+            R.id.imageCollectionFragment -> this.findNavController(R.id.fragment).navigate(R.id.imageCollectionFragment)
             R.id.moreFragment -> this.findNavController(R.id.fragment).navigate(R.id.moreFragment)
         }
         clearBadgeNumber(menuItemView.itemId)

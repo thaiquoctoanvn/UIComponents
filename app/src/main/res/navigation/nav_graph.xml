@@ -14,17 +14,26 @@
             android:id="@+id/action_homeFragment_to_moreFragment"
             app:destination="@id/moreFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
+            android:id="@+id/action_homeFragment_to_imageCollectionFragment"
+            app:destination="@id/imageCollectionFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/notificationFragment"
-        android:name="com.example.uicomponents.NotificationFragment"
-        android:label="Notification"
-        tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/moreFragment"
         android:name="com.example.uicomponents.MoreFragment"
         android:label="More"
         tools:layout="@layout/fragment_more" />
+    <fragment
+        android:id="@+id/imageCollectionFragment"
+        android:name="com.example.uicomponents.ImageCollectionFragment"
+        android:label="Image"
+        tools:layout="@layout/fragment_image_collection" >
+        <action
+            android:id="@+id/action_imageCollectionFragment_to_fullImageFragment"
+            app:destination="@id/fullImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fullImageFragment"
+        android:name="com.example.uicomponents.FullImageFragment"
+        android:label="fragment_full_image"
+        tools:layout="@layout/fragment_full_image" />
 </navigation>

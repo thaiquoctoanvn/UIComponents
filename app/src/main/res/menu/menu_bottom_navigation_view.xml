@@ -8,10 +8,10 @@
         android:title="Home"
         android:orderInCategory="1"/>
     <item
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:id="@+id/notificationFragment"
+        android:icon="@drawable/ic_collections_black_24dp"
+        android:id="@+id/imageCollectionFragment"
         app:showAsAction="always"
-        android:title="Notification"
+        android:title="Image"
         android:orderInCategory="2"/>
     <item
         android:icon="@drawable/ic_reorder_black_24dp"

@@ -8,6 +8,8 @@
     <dimen name="lv48dp">48dp</dimen>
     <dimen name="lv56dp">56dp</dimen>
     <dimen name="lv64dp">64dp</dimen>
+    <dimen name="lv72dp">72dp</dimen>
+    <dimen name="lv80dp">80dp</dimen>
     <dimen name="textSize16">16sp</dimen>
     <dimen name="textSize20">20sp</dimen>
     <dimen name="textSize24">24sp</dimen>
